@@ -1,16 +1,18 @@
-name: GitHub Actions Demon 001
-run-name: ${{ github.actor }} is testing on github actions
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
-jobs: 
+jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
-    steps: 
-      - run: echo "Event: ${{ github.event_name }}"
-      - run: echo "Runner: ${{ runner.os }}"
-      - run: echo "Branch: ${{ github.ref }}"
-      - name: Checkout repository code
-      - run: echo "Repository: ${{ github.repository }}"
-      - name: List files in repository
-      - run: |
-        ls ${{ github.workspace }}
-      - run: echo "Job status: ${{job.status }}"
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
