@@ -1,0 +1,16 @@
+name: GitHub Actions Demon 001
+run-name: ${{ github.actor }} is testing on github actions
+on: [push]
+jobs: 
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps: 
+      - run: echo "Event: ${{ github.event_name }}"
+      - run: echo "Runner: ${{ runner.os }}"
+      - run: echo "Branch: ${{ github.ref }}"
+      - name: Checkout repository code
+      - run: echo "Repository: ${{ github.repository }}"
+      - name: List files in repository
+      - run: |
+        ls ${{ github.workspace }}
+      - run: echo "Job status: ${{job.status }}"
