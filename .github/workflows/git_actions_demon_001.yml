@@ -1,8 +1,9 @@
 name: Hello World Workflow
 run-name: Hello World Run
 on:
-  schedule:
-    - cron: '*/5 * * * *'
+  push:
+    branches:
+      - main
 jobs:
   First-Job:
     name: 1st-Job
