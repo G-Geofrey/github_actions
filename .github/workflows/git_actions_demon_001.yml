@@ -1,22 +1,31 @@
-name: Hello World Workflow
-run-name: Hello World Run
+name: Run python script
+run-name: Hello-World
+
 on:
-  push:
-    branches:
-      - main
+  push: 
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
-  First-Job:
-    name: 1st-Job
-    runs-on: ubuntu-latest
+  run_script:
+    name: run-script
+    runs_on: ubuntu-latest
     steps:
-      - run: echo "Actor - ${{ github.actor }}"
-      - run: echo "Event - ${{ github.event_name }}"
-      - run: echo "Runner - ${{ runner.os }}"
-      - name: Repo checkout
-        uses: actions/checkout@v4
-      - run: echo "Repo - ${{ github.repository }}"
-      - run: echo "Branch - ${{ github.ref }}"
-      - name: List files
+      - run: echo "${{ github.actor }} running workflow."
+      - name: Checkout repo
+          uses: actions/checkout@v4
+      - name: Setup python
+        uses: actions/setup-python@v3
+          with:
+            python-version: "3.10"
+      - name: Install dependencies
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "Job Status - ${{ job.status }}"
+          python -m pip install --upgrade pip
+      - name: Run app
+        run: |
+          python hello_world.py
+      
