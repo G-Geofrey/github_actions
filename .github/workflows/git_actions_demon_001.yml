@@ -2,7 +2,7 @@ name: Hello World Workflow
 run-name: Hello World Run
 on:
   schedule:
-    - cron: '*/3 * * * *'
+    - cron: '*/5 * * * *'
 jobs:
   First-Job:
     name: 1st-Job
