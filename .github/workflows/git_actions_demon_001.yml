@@ -13,7 +13,7 @@ permissions:
 jobs:
   run_script:
     name: run-script
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - run: echo "${{ github.actor }} running workflow."
       - name: Checkout repo
