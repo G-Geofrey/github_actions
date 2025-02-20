@@ -1,0 +1,30 @@
+name: my-app
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER:  gsp
+      POSTGRES_DB:  db_ds
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    
+  app:
+    build: .
+    container_name: python_app
+    depends_on:
+      - postgres 
+    restart: on-failure:2
+    environment:
+      POSTGRES_DB: db_ds
+      POSTGRES_URL: postgresql://gsp:password@postgres/db_ds
+
+volumes:
+  pgdata:
+
